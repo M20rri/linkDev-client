@@ -1,0 +1,47 @@
+<form class="row g-3" name="temFrm" #temFrm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="card">
+    <div class="card-header">
+      {{cardHeader}}
+    </div>
+    <ng-container *ngIf="!isLoading; else elseTemplate">
+      <div class="card-body" *ngIf="applicaint">
+        <div class="col-md-6">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" name="applicantName" #applicantName="ngModel"
+            [(ngModel)]="applicaint.name" [class.is-invalid]="applicantName.invalid && applicantName.touched" required>
+          <span class="text-danger" *ngIf="applicantName.touched && applicantName.errors?.['required']">
+            Name is required
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Email</label>
+          <input type="text" class="form-control" name="applicantEmail" #applicantEmail="ngModel"
+            [(ngModel)]="applicaint.email" [class.is-invalid]="applicantEmail.invalid && applicantEmail.touched"
+            required>
+          <span class="text-danger" *ngIf="applicantEmail.touched && applicantEmail.errors?.['required']">
+            Email is required
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Mobile No</label>
+          <input type="text" class="form-control" name="applicantMobileNo" #applicantMobileNo="ngModel"
+            [(ngModel)]="applicaint.mobile" [class.is-invalid]="applicantMobileNo.invalid && applicantMobileNo.touched"
+            required>
+          <span class="text-danger" *ngIf="applicantMobileNo.touched && applicantMobileNo.errors?.['required']">
+            Mobile No is required
+          </span>
+        </div>
+        <div class="col-md-12 mt-5">
+          <button type="submit" class="btn btn-primary" style="margin-right: 5px;" [disabled]="temFrm.invalid">Quick
+            Apply</button>
+          <button type="button" class="btn btn-warning" [routerLink]="['/vacancy']">Cancel</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="ld ld-ring ld-spin-fast"></div>
+    </ng-template>
+
+  </div>
+
+</form>

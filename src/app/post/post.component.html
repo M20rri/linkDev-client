@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <h3>{{title}}</h3>
+  </div>
+  <div class="card-body">
+    <ng-container *ngIf="!isLoading; else elseTemplate">
+      <div class="row">
+        <div class="col-sm-3 mt-1" *ngFor="let vacancy of vacancies; let i=index">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{vacancy.name}}</h5>
+              <p class="card-text">{{vacancy.description}}</p>
+              <button class="btn btn-primary" [routerLink]="['/vacancy-details', vacancy.id]">View</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="ld ld-ring ld-spin-fast"></div>
+    </ng-template>
+
+
+
+  </div>
+</div>
